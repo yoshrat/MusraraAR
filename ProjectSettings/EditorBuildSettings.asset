@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/ImageQualityTester.unity
+    guid: cb3998730e8260b40a6a2c0866855213
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: f82c7fa3cfca5a34795bc56def6866d6
   m_configObjects: {}
