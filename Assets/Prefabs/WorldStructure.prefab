@@ -58,7 +58,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 5825548892467280568}
   - component: {fileID: 3603100676520257976}
   - component: {fileID: 4778319620413499911}
+  - component: {fileID: 8893146502582977541}
   m_Layer: 0
   m_Name: WorldStructure
   m_TagString: Untagged
@@ -310,11 +311,27 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
+--- !u!114 &8893146502582977541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825548892467280551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63856301427dbc4596fe1d326146a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtMonitor: {fileID: 4235161451266554578}
+  videoPlayers:
+  - {fileID: 4778319620413499911}
+  - {fileID: 3249166043518960887}
 --- !u!1 &5825548892937608161
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +344,7 @@ GameObject:
   - component: {fileID: 5825548892937608165}
   - component: {fileID: 5825548892937608164}
   - component: {fileID: 5825548892937608163}
+  - component: {fileID: 4235161451266554578}
   m_Layer: 5
   m_Name: WorldCanvas
   m_TagString: Untagged
@@ -342,7 +360,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5825548892937608161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5825548891912645442}
@@ -414,6 +432,36 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4235161451266554578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825548892937608161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed10f0bfe56ed154cb3c8de86b780016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  minAngle: 45
+  LookingStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8893146502582977541}
+        m_MethodName: OnLookingStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7835448363777185303
 GameObject:
   m_ObjectHideFlags: 0

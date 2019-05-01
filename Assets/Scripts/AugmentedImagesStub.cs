@@ -14,7 +14,7 @@ public class AugmentedImagesStub : MonoBehaviour
 
     public void FireDetectedImage(int index)
     {
-        GameController.MarkerData markerData = new GameController.MarkerData { name = gameController.allVideoData[index].name, anchorTransform = transform };
+        GameController.MarkerData markerData = new GameController.MarkerData { name = gameController.allVideoData[index].name, imageIndex = index, anchorTransform = transform };
         gameController.OnMarkerDiscovered(markerData);
     }
 

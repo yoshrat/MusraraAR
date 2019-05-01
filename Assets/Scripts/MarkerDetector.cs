@@ -36,20 +36,23 @@ public class MarkerDetector : MonoBehaviour
         foreach (AugmentedImage image in tempAugmentedImages)
         {
             DBIndexToIsFound.TryGetValue(image.DatabaseIndex, out bool isFound);
-            Debug.Log("handling image " + image.Name);
             if (image.TrackingState == TrackingState.Tracking && isFound == false)
             {
-                Debug.Log("image is DECTED!");
                 DBIndexToIsFound[image.DatabaseIndex] = true;
                 ImageDetected.Invoke(image);
             }
             else if (image.TrackingState == TrackingState.Stopped && isFound == true)
             {
-                Debug.Log("image is lost!");
                 DBIndexToIsFound[image.DatabaseIndex] = false;
                 ImageLost.Invoke(image);
             }
         }
 
+    }
+
+    public void SetImageDetection(int imageIndex, bool isDetected)
+    {
+        Debug.Log("SetImageDetection. imageIndex = " + imageIndex + " is detected = " + isDetected);
+        DBIndexToIsFound[imageIndex] = isDetected;
     }
 }
