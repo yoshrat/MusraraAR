@@ -14,7 +14,10 @@ public class SpatialVideoController : MonoBehaviour
 
     void Start()
     {
-        GameController.Instance.uiAnimator.SetTrigger("ShowWallInstructions");
+        if (GameController.Instance.enabled == true)
+        {
+            GameController.Instance.uiAnimator.SetTrigger("ShowWallInstructions");
+        }
     }
 
     public void OnLookingStarted()
@@ -25,7 +28,10 @@ public class SpatialVideoController : MonoBehaviour
 
     IEnumerator LookingStartedSequence()
     {
-        GameController.Instance.uiAnimator.SetTrigger("PlayVideo");
+        if (GameController.Instance.enabled == true)
+        {
+            GameController.Instance.uiAnimator.SetTrigger("PlayVideo");
+        }
         yield return new WaitForSeconds(1.0f);
 
         videoPlayersWaitingList.Clear();

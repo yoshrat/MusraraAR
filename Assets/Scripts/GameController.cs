@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         uiAnimator.SetTrigger("ShowInstructions");
         markerDetector.enabled = true;
         // skipButton.gameObject.SetActive(false);
