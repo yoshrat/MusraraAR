@@ -42,4 +42,10 @@ public class AugmentedImagesStub : MonoBehaviour
         FireDetectedImage(3);
     }
 
+    [ContextMenu("Fire Detected Image 4")]
+    public void FireDetectedImage4()
+    {
+        FireDetectedImage(4);
+    }
+
 }

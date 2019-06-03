@@ -832,6 +832,12 @@ MonoBehaviour:
       type: 3}
     clip: {fileID: 32900000, guid: 79f34d9490770b644954d25fc59f4498, type: 3}
     playImmediately: 1
+  - name: WindowsPoster
+    image: {fileID: 2800000, guid: 6d64a8226cf4c8047a35cf2a79c62321, type: 3}
+    prefab: {fileID: 5825548892467280551, guid: c95dd3b5a2357674987729919f6aecb4,
+      type: 3}
+    clip: {fileID: 32900000, guid: 932b9c55a486273448e0cd4025b6e6e7, type: 3}
+    playImmediately: 1
   skipButton: {fileID: 1818643429}
   instructionsPanel: {fileID: 1137101423}
   foundPanel: {fileID: 1634655615}
