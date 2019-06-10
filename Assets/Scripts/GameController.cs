@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
         public string name;
         public Texture image;
         public GameObject prefab;
+        public Texture firstFrame;
         public VideoClip clip;
         public bool playImmediately;
     }
@@ -100,13 +101,23 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         GameObject instance = Instantiate(currentVideoData.prefab, markerData.anchorTransform);
         currentVideoInstance = instance;
-        VideoPlayer videoPlayer = instance.GetComponent<VideoPlayer>();
-        videoPlayer.clip = currentVideoData.clip;
-        videoPlayer.loopPointReached += OnVideoEnded;
-        if (currentVideoData.playImmediately == true)
+
+        VideoPlayerController videoController = instance.GetComponent<VideoPlayerController>();
+        if (videoController != null)
         {
-            Debug.Log("Playing video...");
-            videoPlayer.Play();
+            videoController.videoData = currentVideoData;
+            videoController.VideoEnded.AddListener(OnVideoEnded);
+        }
+        else
+        {
+            VideoPlayer videoPlayer = instance.GetComponent<VideoPlayer>();
+            videoPlayer.clip = currentVideoData.clip;
+            videoPlayer.loopPointReached += OnVideoEnded;
+            if (currentVideoData.playImmediately == true)
+            {
+                Debug.Log("Playing video...");
+                videoPlayer.Play();
+            }            
         }
     }
 
@@ -134,7 +145,19 @@ public class GameController : MonoBehaviour
         if (currentVideoInstance == null)
             return;
 
-        clearRenderTexture(currentVideoInstance.GetComponent<VideoPlayer>().targetTexture);
+        ClearRenderTexture(currentVideoInstance.GetComponent<VideoPlayer>().targetTexture);
+
+
+        VideoPlayerController videoController = currentVideoInstance.GetComponent<VideoPlayerController>();
+        if (videoController != null)
+        {
+            videoController.VideoEnded.RemoveListener(OnVideoEnded);
+        }
+        else
+        {
+            VideoPlayer videoPlayer = currentVideoInstance.GetComponent<VideoPlayer>();
+            videoPlayer.loopPointReached -= OnVideoEnded;
+        }
         Destroy(currentVideoInstance);
         currentVideoInstance = null;
         currentVideoData = null;
@@ -144,7 +167,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitAndEnableImageDetection());
     }
 
-    void clearRenderTexture(RenderTexture rt)
+    public static void ClearRenderTexture(RenderTexture rt)
     {
         RenderTexture tempRt = UnityEngine.RenderTexture.active;
         UnityEngine.RenderTexture.active = rt;

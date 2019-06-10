@@ -8,6 +8,7 @@ public class SpatialVideoController : MonoBehaviour
 {
     public LookAtMonitor lookAtMonitor;
     public VideoPlayer[] videoPlayers;
+    public GameObject throbber;
 
 
     List<VideoPlayer> videoPlayersWaitingList = new List<VideoPlayer>();
@@ -54,6 +55,7 @@ public class SpatialVideoController : MonoBehaviour
 
     private void OnAllPlayersReady()
     {
+        throbber.SetActive(false);
         foreach (VideoPlayer player in videoPlayers)
         {
             player.Play();
